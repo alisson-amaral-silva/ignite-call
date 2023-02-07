@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "npx eslint src --ext .ts,.tsx --fix"
+    "lint": "npx eslint src --ext .ts,.tsx --fix",
+    "prisma": "npx prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
@@ -20,6 +21,7 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "next": "13.1.6",
+    "next-auth": "^4.19.2",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",
