@@ -6,7 +6,7 @@ import { ConnectBox, ConnectItem, AuthError } from './styles'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-export default function Register() {
+export default function ConnectCalendar() {
   // async function handleRegister() {
 
   // }
