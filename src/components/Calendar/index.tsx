@@ -8,7 +8,7 @@ import {
   CalendarHeader,
   CalendarTitle,
 } from './styles'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 
 export function Calendar() {
@@ -30,6 +30,30 @@ export function Calendar() {
 
   const currentMonth = currentDate.format('MMMM')
   const currentYear = currentDate.format('YYYY')
+
+  const calendarWeeks = useMemo(() => {
+    // pego os dias do mes
+    const daysInMonthArray = Array.from({
+      length: currentDate.daysInMonth(),
+    }).map((_, i) => {
+      return currentDate.set('date', i + 1)
+    })
+
+    // pego o 1 dia do mes
+    const firstWeekDay = currentDate.get('day')
+    // pego os dias anteriores do 1 dia do mes para preencher as datas anteriores ao 1 dia do mes
+    const previousMonthFillArray = Array.from({
+      length: firstWeekDay,
+    })
+      .map((_, i) => {
+        return currentDate.subtract(i + 1, 'day')
+      })
+      .reverse()
+
+    return [...previousMonthFillArray, ...daysInMonthArray]
+  }, [currentDate])
+
+  console.log('calendarWeeks ', calendarWeeks)
 
   return (
     <CalendarContainer>
