@@ -4,9 +4,8 @@ interface GetWeekDaysParams {
 
 export function getWeekDays({ short = false }: GetWeekDaysParams = {}) {
   const formatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' })
-  const month = new Date().getMonth()
   return Array.from(Array(7).keys())
-    .map((day) => formatter.format(new Date(Date.UTC(2021, month, day))))
+    .map((day) => formatter.format(new Date(Date.UTC(2021, 5, day))))
     .map((weekDay) => {
       if (short) {
         return weekDay.substring(0, 3).toUpperCase()
