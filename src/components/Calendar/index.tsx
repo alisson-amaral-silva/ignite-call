@@ -48,9 +48,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
     const nextMonthDate = currentDate.add(1, 'month')
     setCurrentDate(nextMonthDate)
   }
-
   const shortWeekDays = getWeekDays({ short: true })
-
   const currentMonth = currentDate.format('MMMM')
   const currentYear = currentDate.format('YYYY')
 
@@ -71,6 +69,9 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
   )
 
   const calendarWeeks = useMemo(() => {
+    if (!blockedDates) {
+      return []
+    }
     // pego os dias do mes
     const daysInMonthArray = Array.from({
       length: currentDate.daysInMonth(),
@@ -114,7 +115,7 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
           date,
           disabled:
             date.endOf('day').isBefore(new Date()) ||
-            blockedDates?.blockedWeekDays.includes(date.get('day')),
+            blockedDates.blockedWeekDays.includes(date.get('day')),
         }
       }),
       ...nextMonthFillArray.map((date) => {
